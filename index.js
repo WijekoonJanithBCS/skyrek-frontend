@@ -1,6 +1,7 @@
 import express from 'express';
 
 import mongoose from 'mongoose';
+import Student from './models/student.js';
 
 let mongoURI="mongodb+srv://admin:1234@cluster0.aenbzug.mongodb.net/?appName=Cluster0";
 mongoose.connect(mongoURI)
@@ -10,6 +11,8 @@ mongoose.connect(mongoURI)
 .catch((err) => {
     console.log('MongoDB connection error:', err);
 });     
+
+
 
 const app = express();
 
@@ -23,14 +26,14 @@ app.get('/',
 
 app.post('/', 
     (req,res) => {
-        console.log('Post requested received..');
-        //console.log(req.body);
-        res.json(
-            {
-                message: 'Data received successfully',
-            }
-        );
-    }  );
+       const student = new Student({
+        name: req.body.name,
+        city: req.body.city,
+        age: req.body.age
+       });
+       student.save();
+    } );
+    
 
 app.put('/', 
     () => {
