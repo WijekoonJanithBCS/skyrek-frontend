@@ -1,6 +1,8 @@
 import express from 'express';
 
 import mongoose from 'mongoose';
+import userRouter from './router/userRouter.js';
+
 
 
 let mongoURI="mongodb+srv://admin:1234@cluster0.aenbzug.mongodb.net/?appName=Cluster0";
@@ -18,13 +20,12 @@ const app = express();
 
 app.use(express.json());
 
+app.use('/users', userRouter);
 
 
-
-app.listen(3000, 
-() => {
-    console.log('Server is running on port 3000 .. ');
-});
-
+function start() {
+    console.log('Starting server on port 3000');
+}
+app.listen(3000, start);
 
 
