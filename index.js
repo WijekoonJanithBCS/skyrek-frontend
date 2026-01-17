@@ -23,6 +23,7 @@ app.use(express.json());
 app.use('/users', userRouter);
 
 
+
 function start() {
     console.log('Starting server on port 3000');
 }

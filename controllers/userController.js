@@ -19,3 +19,9 @@ export function createUser (req, res) {
         res.status(500).send({message: 'Error creating user', error: error.message});
     });
 }
+export function loginUser(req, res) {
+    console.log("Login request received");
+}
+
+
+        
