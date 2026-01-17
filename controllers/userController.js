@@ -20,22 +20,15 @@ export function createUser (req, res) {
     });
 }
 export function loginUser(req, res) {
-    user.findOne({email: req.body.email}).then((foundUser)=>{
-        if(foundUser) {
-            const passwordIsValid = bcrypt.compareSync(req.body.password, foundUser.password);
-            if(passwordIsValid) {
-                res.status(200).send({message: 'Login successful'});
-                
-            } else {
-                res.status(401).send({message: 'Invalid password'});
-            }
-        } else {
-            res.status(404).send({message: 'User not found'});
+    console.log(req.body.email);
+    user.findOne(
+        {email: req.body.email
+
         }
-    }).catch((error)=>{
-        res.status(500).send({message: 'Error logging in', error: error.message});
-    });
-    
+    ).then((result)=>{
+        console.log(result);
+    }
+)
 }
 
 
